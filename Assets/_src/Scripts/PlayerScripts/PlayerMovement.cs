@@ -17,6 +17,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        PlayerInput();
+    }
+
+    private void PlayerInput()
+    {
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
+        {
+            ManageMovement();
+        }
+    }
+
+    private void ManageMovement()
+    {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
@@ -28,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
             if (hit.collider.CompareTag("Ground"))
             {
                 Debug.Log("HITANDO CHAO");
-
                 nav.SetDestination(hit.point);
             }
-        }
+        }   
     }
+
 }
